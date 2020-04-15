@@ -57,10 +57,13 @@ public class Orders {
 
     public void getDiscount(){
         //TODO
+        return cart.getTotalPrice(); 
     }
 
     public void getOrderPrice(){
-        //TODO
+        double totalPrice = this.getCart().getTotalPrice().doubleValue();
+        double discount = this.getCart().getTotalPrice() * getDiscount();
+        return totalPrice - discount;
     }
 
     public void close(){
