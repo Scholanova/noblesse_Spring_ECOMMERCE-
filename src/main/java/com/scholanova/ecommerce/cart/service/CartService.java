@@ -1,10 +1,16 @@
 package com.scholanova.ecommerce.cart.service;
 
 import com.scholanova.ecommerce.cart.entity.Cart;
+import com.scholanova.ecommerce.cart.exception.CartAddProductToCartException;
+import com.scholanova.ecommerce.cart.exception.CartChangeProductQuantityExcetion;
 
 public interface CartService {
 
-    public Cart addProductToCart(Cart cart, Long productId, int quantity);
+    public Cart addProductToCart(Cart cart, Long productId, int quantity) throws CartAddProductToCartException;
 
-    public Cart changeProductQuantity(Cart cart, Long productId, int quantity);
+    //public Cart addProductToCart(Cart cart, Long productId, int quantity);
+
+    //public Cart changeProductQuantity(Cart cart, Long productId, int quantity);
+
+    public Cart changeProductQuantity(Cart cart, Long productId, int quantity) throws CartChangeProductQuantityExcetion;
 }
