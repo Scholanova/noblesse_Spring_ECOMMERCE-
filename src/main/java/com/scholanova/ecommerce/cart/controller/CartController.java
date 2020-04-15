@@ -1,8 +1,7 @@
 package com.scholanova.ecommerce.cart.controller;
 
 import com.scholanova.ecommerce.cart.entity.Cart;
-import com.scholanova.ecommerce.cart.exception.CartAddProductToCartException;
-import com.scholanova.ecommerce.cart.exception.CartChangeProductQuantityExcetion;
+import com.scholanova.ecommerce.cart.exception.CartException;
 import com.scholanova.ecommerce.cart.repository.CartRepository;
 import com.scholanova.ecommerce.cart.service.CartService;
 import org.springframework.data.domain.Pageable;
@@ -38,17 +37,17 @@ public class CartController {
 
     @PostMapping("/{id}/items")
 
-    //j'ai ajouté CartAddProductToCartException comme dans le service
+    //j'ai ajouté CartException comme dans le service
 
-    public Cart addProductToCart(@PathVariable("id)") Cart cart, @RequestBody ItemWithQuantity payload) throws CartAddProductToCartException {
+    public Cart addProductToCart(@PathVariable("id)") Cart cart, @RequestBody ItemWithQuantity payload) throws CartException {
         return cartService.addProductToCart(cart, payload.productId, payload.quantity);
     }
 
     @PutMapping("/{cartid}/items/{productId}/quantity")
 
-    //j'ai ajouté CartChangeProductQuantityExcetion comme dans le service
+    //j'ai ajouté CartException comme dans le service
 
-    public Cart changeProductQuantity(@PathVariable("cartId") Cart cart, @PathVariable("productId") Long productId, @RequestBody int quantity) throws CartChangeProductQuantityExcetion {
+    public Cart changeProductQuantity(@PathVariable("cartId") Cart cart, @PathVariable("productId") Long productId, @RequestBody int quantity) throws CartException {
         return cartService.changeProductQuantity(cart, productId, quantity);
     }
 

@@ -1,5 +1,6 @@
 package com.scholanova.ecommerce.cart.entity;
 
+import com.scholanova.ecommerce.order.CartItem;
 import com.scholanova.ecommerce.product.entity.Product;
 import org.junit.jupiter.api.Test;
 

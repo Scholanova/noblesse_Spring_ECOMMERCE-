@@ -1,8 +1,7 @@
 package com.scholanova.ecommerce.cart.service;
 
 import com.scholanova.ecommerce.cart.entity.Cart;
-import com.scholanova.ecommerce.cart.exception.CartAddProductToCartException;
-import com.scholanova.ecommerce.cart.exception.CartChangeProductQuantityExcetion;
+import com.scholanova.ecommerce.cart.exception.CartException;
 import com.scholanova.ecommerce.product.entity.Product;
 import com.scholanova.ecommerce.product.repository.ProductRepository;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,7 @@ public class CartServiceImpl implements CartService{
     ProductRepository productRepository;
 
     @Override
-    public Cart addProductToCart(Cart cart, Long productId, int quantity) throws CartAddProductToCartException {
+    public Cart addProductToCart(Cart cart, Long productId, int quantity) throws CartException {
         //TODO
         //Je gère les exceptions avec try et catch
 
@@ -28,12 +27,12 @@ public class CartServiceImpl implements CartService{
         //sinon,afficher une exception avec le message de l'echec de l'ajout
 
         catch ( Exception e ) {
-            throw new CartAddProductToCartException("L'ajout du produit dans la carte a echoue");
+            throw new CartException("L'ajout du produit dans la carte a echoue");
         }
     }
 
     @Override
-    public Cart changeProductQuantity(Cart cart, Long productId, int quantity) throws CartChangeProductQuantityExcetion {
+    public Cart changeProductQuantity(Cart cart, Long productId, int quantity) throws CartException {
         //TODO
         //Je gère les exceptions avec try et catch
 
@@ -49,7 +48,7 @@ public class CartServiceImpl implements CartService{
         //sinon,afficher une exception avec le message de l'echec du changement de quantité
 
         catch (Exception e) {
-            throw new CartChangeProductQuantityExcetion("Le changement de la quantity du produit dans la carte a echoue");
+            throw new CartException("Le changement de la quantity du produit dans la carte a echoue");
         }
     }
 }

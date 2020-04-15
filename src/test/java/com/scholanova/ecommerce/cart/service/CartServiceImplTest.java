@@ -1,9 +1,8 @@
 package com.scholanova.ecommerce.cart.service;
 
 import com.scholanova.ecommerce.cart.entity.Cart;
-import com.scholanova.ecommerce.cart.entity.CartItem;
-import com.scholanova.ecommerce.cart.exception.CartAddProductToCartException;
-import com.scholanova.ecommerce.cart.exception.CartChangeProductQuantityExcetion;
+import com.scholanova.ecommerce.order.CartItem;
+import com.scholanova.ecommerce.cart.exception.CartException;
 import com.scholanova.ecommerce.product.entity.Product;
 import com.scholanova.ecommerce.product.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,8 @@ class CartServiceImplTest {
     }*/
 
     @Test
-    // j'ai ajouté CartAddProductToCartException comme dans le service
-    public void addProductToCart_ShouldAddTheProductToTheCart() throws CartAddProductToCartException {
+    // j'ai ajouté CartException comme dans le service
+    public void addProductToCart_ShouldAddTheProductToTheCart() throws CartException {
         //given
         Cart cart = new Cart();
         Product product = Product.create("tested", "tested", 10.5f, 0.1f, "EUR");
@@ -50,13 +49,13 @@ class CartServiceImplTest {
         product.setId((long) 12);
         given(productRepository.findById(Long.valueOf(12))).willReturn(java.util.Optional.of(product));
         //then
-        assertThrows(CartAddProductToCartException.class, () -> service.addProductToCart(cart, (long) 123, 2));
-        assertThrows(CartAddProductToCartException.class, () -> service.addProductToCart(cart, (long) 12, -3));
+        assertThrows(CartException.class, () -> service.addProductToCart(cart, (long) 123, 2));
+        assertThrows(CartException.class, () -> service.addProductToCart(cart, (long) 12, -3));
     }
 
     @Test
     // j'ai ajouté CartChangeProductQuantityException comme dans le service
-    public void changeProductQuantity_ShouldChangeQuantity() throws CartChangeProductQuantityExcetion {
+    public void changeProductQuantity_ShouldChangeQuantity() throws CartException {
         //given
         Cart cart = new Cart();
         Product product = Product.create("tested", "tested", 10.5f, 0.1f, "EUR");
@@ -78,7 +77,7 @@ class CartServiceImplTest {
         cart.getCartItems().add(CartItem.create(product, 4));
         given(productRepository.findById(Long.valueOf(12))).willReturn(java.util.Optional.of(product));
         //then
-        assertThrows(CartChangeProductQuantityExcetion.class, () -> service.changeProductQuantity(cart, (long) 123, 2));
-        assertThrows(CartChangeProductQuantityExcetion.class, () -> service.changeProductQuantity(cart, (long) 12, -3));
+        assertThrows(CartException.class, () -> service.changeProductQuantity(cart, (long) 123, 2));
+        assertThrows(CartException.class, () -> service.changeProductQuantity(cart, (long) 12, -3));
     }
 }

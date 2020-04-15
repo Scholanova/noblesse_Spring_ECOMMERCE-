@@ -1,4 +1,4 @@
-package com.scholanova.ecommerce.cart.entity;
+package com.scholanova.ecommerce.order;
 
 import com.scholanova.ecommerce.product.entity.Product;
 

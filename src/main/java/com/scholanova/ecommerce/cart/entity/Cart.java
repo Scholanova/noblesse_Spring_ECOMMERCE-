@@ -1,6 +1,7 @@
 package com.scholanova.ecommerce.cart.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.scholanova.ecommerce.order.CartItem;
 import com.scholanova.ecommerce.order.entity.Orders;
 import com.scholanova.ecommerce.product.entity.Product;
 
@@ -10,20 +11,20 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
-@Entity(name = "cart")
+@Entity
+        (name = "cart")
 public class Cart {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();
 
-    @OneToOne(mappedBy = "cart", optional = true)
+    @OneToOne(mappedBy = "cart")
     private Orders orders;
 
 

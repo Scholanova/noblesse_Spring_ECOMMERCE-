@@ -2,10 +2,10 @@ package com.scholanova.ecommerce.order.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scholanova.ecommerce.cart.entity.Cart;
-import com.sun.xml.bind.v2.TODO;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity(name="orders")
 public class Orders {
@@ -33,10 +33,26 @@ public class Orders {
 
     public void createOrder(){
         //TODO
+        OrderStatus status=OrderStatus.CREATED;
+        setStatus(status);
     }
 
     public void checkout(){
         //TODO
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = new Date();
+        setIssueDate(date);
+
+        OrderStatus status=OrderStatus.PENDING;
+        setStatus(status);
+        /*try
+        {
+
+        }
+        catch (Exception e)
+        {
+
+        }*/
     }
 
     public void getDiscount(){
@@ -49,6 +65,8 @@ public class Orders {
 
     public void close(){
         //TODO
+        OrderStatus status=OrderStatus.CLOSED;
+        setStatus(status);
     }
 
 
